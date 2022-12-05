@@ -96,6 +96,9 @@ class StyleGuideController extends ControllerBase {
     $element = $this->getSearchResult();
     $build[] = $this->wrapElementWideContainer($element, 'Search result');
 
+    $element = $this->getPersonCards();
+    $build[] = $this->wrapElementWideContainer($element, 'Person Cards');
+
     return $build;
   }
 
@@ -293,6 +296,37 @@ class StyleGuideController extends ControllerBase {
       '#title' => $this->t('Lorem ipsum dolor sit amet'),
       '#subtitle' => $this->t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
       '#button' => $button,
+    ];
+  }
+
+  /**
+   * Get person cards.
+   *
+   * @return array
+   *   Render array.
+   */
+  protected function getPersonCards(): array {
+    $image = $this->buildImage($this->getPlaceholderImage(128, 128), 'Card image');
+    $card = [
+      '#theme' => 'server_theme_person_card',
+      '#image' => $image,
+      '#title' => 'The source has extend, but not everyone fears it.',
+      '#url' => Url::fromRoute('<front>'),
+    ];
+
+    $single_card_long_title = $card;
+    $single_card_long_title['#title'] = 'How Professional Learning Networks Are Helping Educators Get Through Coronavirus, well they need to really learn a lot!';
+
+    $items = [
+      $card,
+      $single_card_long_title,
+      $card,
+      $card,
+    ];
+
+    return [
+      '#theme' => 'server_theme_person_cards',
+      '#items' => $items,
     ];
   }
 
