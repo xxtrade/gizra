@@ -171,6 +171,10 @@ function server_theme_theme() {
     'variables' => [
       'image' => NULL,
       'title' => NULL,
+      'name' => NULL,
+      'phone' => NULL,
+      'mail' => NULL,
+      'role' => NULL,
       'url' => NULL,
       'date' => NULL,
     ],
