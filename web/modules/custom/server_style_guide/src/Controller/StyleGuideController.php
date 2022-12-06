@@ -365,22 +365,22 @@ class StyleGuideController extends ControllerBase {
    */
   protected function getPersonCards(): array {
     $image = $this->buildImage($this->getPlaceholderImage(128, 128), 'Card image');
+    //$image['#attributes']['class'] = ['rounded-full', 'h-24', 'w-24', 'mx-auto'];
     $card = [
       '#theme' => 'server_theme_person_card',
       '#image' => $image,
-      '#title' => 'The source has extend, but not everyone fears it.',
+      '#name' => 'Jane Cooper',
+      '#title' => 'Paradigm Representative',
+      '#role' => 'Admin',
+      '#mail' => 'JaneCooper@example.com',
+      '#phone' => '0(10)000000000',
       '#url' => Url::fromRoute('<front>'),
     ];
 
-    $single_card_long_title = $card;
-    $single_card_long_title['#title'] = 'How Professional Learning Networks Are Helping Educators Get Through Coronavirus, well they need to really learn a lot!';
-
-    $items = [
-      $card,
-      $single_card_long_title,
-      $card,
-      $card,
-    ];
+    while ($i <= 10) {
+      $items[] = $card;
+      $i++;
+    }
 
     return [
       '#theme' => 'server_theme_person_cards',
