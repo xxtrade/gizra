@@ -114,6 +114,9 @@ class StyleGuideController extends ControllerBase {
     $element = $this->getMediaVideo();
     $build[] = $this->wrapElementWideContainer($element, 'Media: Video');
 
+    $element = $this->getPersonCards();
+    $build[] = $this->wrapElementWideContainer($element, 'Person Cards');
+
     return $build;
   }
 
@@ -351,6 +354,37 @@ class StyleGuideController extends ControllerBase {
       '#title' => $this->t('Lorem ipsum dolor sit amet'),
       '#subtitle' => $this->t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
       '#button' => $button,
+    ];
+  }
+
+  /**
+   * Get person cards.
+   *
+   * @return array
+   *   Render array.
+   */
+  protected function getPersonCards(): array {
+    $image = $this->buildImage($this->getPlaceholderImage(128, 128), 'Card image');
+    //$image['#attributes']['class'] = ['rounded-full', 'h-24', 'w-24', 'mx-auto'];
+    $card = [
+      '#theme' => 'server_theme_person_card',
+      '#image' => $image,
+      '#name' => 'Jane Cooper',
+      '#title' => 'Paradigm Representative',
+      '#role' => 'Admin',
+      '#mail' => 'JaneCooper@example.com',
+      '#phone' => '0(10)000000000',
+      '#url' => Url::fromRoute('<front>'),
+    ];
+
+    while ($i <= 10) {
+      $items[] = $card;
+      $i++;
+    }
+
+    return [
+      '#theme' => 'server_theme_person_cards',
+      '#items' => $items,
     ];
   }
 
